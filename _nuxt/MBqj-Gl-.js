@@ -1,0 +1,1 @@
+import{_ as e}from"./DlAUqK2U.js";const r={};function n(t,c){return" Manntree 臻彩菜克斯(英國進口) 英國BCF塗料聯合協會認證產品: 歐標環保,不含防腐劑,德國藍天使環保認證: 採用英國絨毛手感&色澤醇正牆面擁有自我修復能力; 絨式隔熱塗層,保溫隔熱 塗刷面積 塗刷方式 產地:英國 m2 10-15m/桶 輥塗、刷塗 顏色 標準白色 包裝 5kg 光澤:啞光 "}const o=e(r,[["render",n]]);export{o as default};
