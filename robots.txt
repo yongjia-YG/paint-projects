@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://nokil1141.com/sitemap.xml
