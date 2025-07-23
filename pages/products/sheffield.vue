@@ -18,11 +18,22 @@
 </template>
 
 <script setup lang="ts">
-const products = ref(
-  Array.from({ length: 13 }, (_, i) => ({
+const products = ref([
+  // Original LINE_ALBUM images
+  ...Array.from({ length: 13 }, (_, i) => ({
     img: `/imgs/sheffield/LINE_ALBUM__250318_${i + 1}.jpg`,
-  }))
-);
+  })),
+  // New S__ images
+  { img: '/imgs/sheffield/S__27918455_0.jpg' },
+  { img: '/imgs/sheffield/S__27918456_0.jpg' },
+  { img: '/imgs/sheffield/S__27918457_0.jpg' },
+  { img: '/imgs/sheffield/S__27918458_0.jpg' },
+  { img: '/imgs/sheffield/S__27918459_0.jpg' },
+  { img: '/imgs/sheffield/S__27918460_0.jpg' },
+  { img: '/imgs/sheffield/S__27918461_0.jpg' },
+  { img: '/imgs/sheffield/S__27918462_0.jpg' },
+  { img: '/imgs/sheffield/S__27918463_0.jpg' },
+]);
 
 useHead({
   title: '英國曼涂雪菲爾 - 金屬光澤藝術塗料 | GA塗料',
