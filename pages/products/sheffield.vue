@@ -33,6 +33,13 @@ const products = ref([
   { img: '/imgs/sheffield/S__27918461_0.jpg' },
   { img: '/imgs/sheffield/S__27918462_0.jpg' },
   { img: '/imgs/sheffield/S__27918463_0.jpg' },
+  // Additional new S__ images
+  { img: '/imgs/sheffield/S__18030623_0.jpg' },
+  { img: '/imgs/sheffield/S__18030624_0.jpg' },
+  { img: '/imgs/sheffield/S__18030625_0.jpg' },
+  { img: '/imgs/sheffield/S__18030626_0.jpg' },
+  { img: '/imgs/sheffield/S__18030627_0.jpg' },
+  { img: '/imgs/sheffield/S__18030628_0.jpg' },
 ]);
 
 useHead({

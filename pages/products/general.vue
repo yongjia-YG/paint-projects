@@ -18,11 +18,25 @@
 </template>
 
 <script setup lang="ts">
-const products = ref(
-  Array.from({ length: 27 }, (_, i) => ({
+const products = ref([
+  // Original S__266158 series images (13-39)
+  ...Array.from({ length: 27 }, (_, i) => ({
     img: `/imgs/general/S__266158${13 + i}_0.jpg`,
-  }))
-);
+  })),
+  // New S__180306 series images
+  { img: '/imgs/general/S__18030619_0.jpg' },
+  { img: '/imgs/general/S__18030620_0.jpg' },
+  { img: '/imgs/general/S__18030621_0.jpg' },
+  { img: '/imgs/general/S__18030622_0.jpg' },
+  { img: '/imgs/general/S__18030630_0.jpg' },
+  { img: '/imgs/general/S__18030631_0.jpg' },
+  { img: '/imgs/general/S__18030632_0.jpg' },
+  { img: '/imgs/general/S__18030633_0.jpg' },
+  { img: '/imgs/general/S__18030634_0.jpg' },
+  { img: '/imgs/general/S__18030635_0.jpg' },
+  { img: '/imgs/general/S__18030636_0.jpg' },
+  { img: '/imgs/general/S__18030637_0.jpg' },
+]);
 
 useHead({
   title: '英國GB曼涂石灰基 - 環保石灰塗料 | 塗料',
