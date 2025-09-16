@@ -23,7 +23,7 @@ const products = ref([
   ...Array.from({ length: 27 }, (_, i) => ({
     img: `/imgs/general/S__266158${13 + i}_0.jpg`,
   })),
-  // New S__180306 series images
+  // S__180306 series images
   { img: '/imgs/general/S__18030619_0.jpg' },
   { img: '/imgs/general/S__18030620_0.jpg' },
   { img: '/imgs/general/S__18030621_0.jpg' },
@@ -36,6 +36,19 @@ const products = ref([
   { img: '/imgs/general/S__18030635_0.jpg' },
   { img: '/imgs/general/S__18030636_0.jpg' },
   { img: '/imgs/general/S__18030637_0.jpg' },
+  // New S__289178 series images
+  { img: '/imgs/general/S__28917831_0.jpg' },
+  { img: '/imgs/general/S__28917832_0.jpg' },
+  { img: '/imgs/general/S__28917833_0.jpg' },
+  { img: '/imgs/general/S__28917834_0.jpg' },
+  { img: '/imgs/general/S__28917835_0.jpg' },
+  { img: '/imgs/general/S__28917836_0.jpg' },
+  { img: '/imgs/general/S__28917837_0.jpg' },
+  { img: '/imgs/general/S__28917838_0.jpg' },
+  { img: '/imgs/general/S__28917839_0.jpg' },
+  { img: '/imgs/general/S__28917840_0.jpg' },
+  { img: '/imgs/general/S__28917842_0.jpg' },
+  { img: '/imgs/general/S__28917843_0.jpg' },
 ]);
 
 useHead({
