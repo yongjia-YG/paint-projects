@@ -40,6 +40,7 @@ const products = ref([
   { path: 'general', img: '/imgs/general/S__26615819_0.jpg', name: '一般案場' },
   { path: 'kitchen', img: '/imgs/kitchen/S__27557923.jpg', name: '廚具安裝' },
   { path: 'flooring', img: '/imgs/flooring/6F84605F-5EB1-46D7-AA8C-2A69992A1BBD.jpg', name: '地板工程' },
+  { path: 'carpentry', img: '/imgs/carpentry/S__29065235_0.jpg', name: '木作裝潢' },
 ]);
 </script>
 
