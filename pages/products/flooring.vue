@@ -51,6 +51,11 @@ const products = ref([
   { img: '/imgs/flooring/S__27557935_0.jpg' },
   { img: '/imgs/flooring/S__27557933_0.jpg' },
   { img: '/imgs/flooring/S__27557930_0.jpg' },
+  { img: '/imgs/flooring/S__30670908_0.jpg' },
+  { img: '/imgs/flooring/S__30670909_0.jpg' },
+  { img: '/imgs/flooring/S__30670910_0.jpg' },
+  { img: '/imgs/flooring/S__30670911_0.jpg' },
+  { img: '/imgs/flooring/S__30670912_0.jpg' },
 ]);
 
 useHead({
