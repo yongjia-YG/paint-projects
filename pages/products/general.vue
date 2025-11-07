@@ -49,6 +49,26 @@ const products = ref([
   { img: '/imgs/general/S__28917840_0.jpg' },
   { img: '/imgs/general/S__28917842_0.jpg' },
   { img: '/imgs/general/S__28917843_0.jpg' },
+  // S__406364 series images (newly added)
+  { img: '/imgs/general/S__406364164_0.jpg' },
+  { img: '/imgs/general/S__406364165_0.jpg' },
+  { img: '/imgs/general/S__406364166_0.jpg' },
+  { img: '/imgs/general/S__406364167_0.jpg' },
+  { img: '/imgs/general/S__406364168_0.jpg' },
+  { img: '/imgs/general/S__406364169_0.jpg' },
+  { img: '/imgs/general/S__406364170_0.jpg' },
+  { img: '/imgs/general/S__406364171_0.jpg' },
+  { img: '/imgs/general/S__406364172_0.jpg' },
+  { img: '/imgs/general/S__406364173_0.jpg' },
+  { img: '/imgs/general/S__406364180_0.jpg' },
+  { img: '/imgs/general/S__406364181_0.jpg' },
+  { img: '/imgs/general/S__406364182_0.jpg' },
+  { img: '/imgs/general/S__406364183_0.jpg' },
+  { img: '/imgs/general/S__406364184_0.jpg' },
+  { img: '/imgs/general/S__406364185_0.jpg' },
+  { img: '/imgs/general/S__406364186_0.jpg' },
+  { img: '/imgs/general/S__406364187_0.jpg' },
+  { img: '/imgs/general/S__406364188_0.jpg' },
 ]);
 
 useHead({
