@@ -35,6 +35,15 @@ const products = ref([
   { img: '/imgs/carpentry/S__29262478_0.jpg' },
   { img: '/imgs/carpentry/S__29262479_0.jpg' },
   { img: '/imgs/carpentry/S__29262480_0.jpg' },
+  // S__308101 series images
+  { img: '/imgs/carpentry/S__30810116_0.jpg' },
+  { img: '/imgs/carpentry/S__30810117_0.jpg' },
+  { img: '/imgs/carpentry/S__30810118_0.jpg' },
+  { img: '/imgs/carpentry/S__30810119_0.jpg' },
+  { img: '/imgs/carpentry/S__30810120_0.jpg' },
+  { img: '/imgs/carpentry/S__30810121_0.jpg' },
+  { img: '/imgs/carpentry/S__30810122_0.jpg' },
+  { img: '/imgs/carpentry/S__30810123_0.jpg' },
 ]);
 
 useHead({
