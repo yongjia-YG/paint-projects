@@ -41,6 +41,7 @@ const products = ref([
   { path: 'kitchen', img: '/imgs/kitchen/S__27557923.jpg', name: '廚具安裝' },
   { path: 'flooring', img: '/imgs/flooring/6F84605F-5EB1-46D7-AA8C-2A69992A1BBD.jpg', name: '地板工程' },
   { path: 'carpentry', img: '/imgs/carpentry/S__29065235_0.jpg', name: '木作裝潢' },
+  { path: 'aerialwork', img: '/imgs/aerialwork/S__31457317_0.jpg', name: '高空作業' },
 ]);
 </script>
 
