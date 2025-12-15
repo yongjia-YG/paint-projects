@@ -101,6 +101,17 @@ const products = ref([
   { img: '/imgs/general/S__411648016_0.jpg' },
   { img: '/imgs/general/S__411648017_0.jpg' },
   { img: '/imgs/general/S__411648018_0.jpg' },
+  // S__272384 series images
+  { img: '/imgs/general/S__27238445_0.jpg' },
+  { img: '/imgs/general/S__27238446_0.jpg' },
+  { img: '/imgs/general/S__27238447_0.jpg' },
+  { img: '/imgs/general/S__27238448_0.jpg' },
+  { img: '/imgs/general/S__27238449_0.jpg' },
+  { img: '/imgs/general/S__27238450_0.jpg' },
+  { img: '/imgs/general/S__27238451_0.jpg' },
+  { img: '/imgs/general/S__27238452_0.jpg' },
+  { img: '/imgs/general/S__27238453_0.jpg' },
+  { img: '/imgs/general/S__27238454_0.jpg' },
 ]);
 
 useHead({
