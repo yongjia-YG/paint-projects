@@ -42,6 +42,12 @@ const products = ref([
   { path: 'flooring', img: '/imgs/flooring/6F84605F-5EB1-46D7-AA8C-2A69992A1BBD.jpg', name: '地板工程' },
   { path: 'carpentry', img: '/imgs/carpentry/S__29065235_0.jpg', name: '木作裝潢' },
   { path: 'aerialwork', img: '/imgs/aerialwork/S__31457317_0.jpg', name: '高空作業' },
+  {
+    path: 'interiorDesign',
+    img: '/imgs/interiorDesign/788866226.904485.mp4',
+    name: '裝潢設計',
+    type: 'video',
+  },
 ]);
 </script>
 
