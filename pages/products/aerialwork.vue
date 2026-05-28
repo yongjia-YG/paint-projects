@@ -16,11 +16,12 @@ interface AerialWorkItem {
 }
 
 const products = ref<AerialWorkItem[]>([
-  { img: '/imgs/aerialwork/S__31457317_0.jpg' },
-  { img: '/imgs/aerialwork/S__31457318_0.jpg' },
-  { img: '/imgs/aerialwork/S__31457319_0.jpg' },
-  { img: '/imgs/aerialwork/S__31457320_0.jpg' },
-  { img: '/imgs/aerialwork/S__31457321_0.jpg' },
+  { img: '/imgs/aerialwork/S__36602017_0.jpg' },
+  { img: '/imgs/aerialwork/S__36602018_0.jpg' },
+  { img: '/imgs/aerialwork/S__36602019_0.jpg' },
+  { img: '/imgs/aerialwork/S__36602020_0.jpg' },
+  { img: '/imgs/aerialwork/S__36602021_0.jpg' },
+  { img: '/imgs/aerialwork/S__36602022_0.jpg' },
 ]);
 
 useHead({
