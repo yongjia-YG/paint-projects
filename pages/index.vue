@@ -1,8 +1,17 @@
+<script setup lang="ts">
+import { site } from '~/data/site';
+
+useHead({
+  title: site.brand,
+  meta: [{ name: 'description', content: site.description }],
+});
+</script>
+
 <template>
-  <!-- <Header /> -->
-  <!-- <AboutUs /> -->
-  <Service />
-  <Products />
-  <!-- <ContactUs /> -->
-  <!-- <Footer /> -->
+  <div>
+    <HomeHero />
+    <HomeAbout />
+    <HomeServices />
+    <HomeWorks />
+  </div>
 </template>

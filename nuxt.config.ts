@@ -57,8 +57,10 @@ export default defineNuxtConfig({
       ],
     },
   },
-  css: ['~/assets/css/reset.css', 'swiper/css', 'swiper/css/navigation'],
+
+  css: ['~/assets/css/reset.css', '~/assets/css/main.css', 'swiper/css', 'swiper/css/navigation'],
   devtools: { enabled: true },
+
   build: {
     transpile: ['swiper'],
   },
@@ -66,6 +68,7 @@ export default defineNuxtConfig({
   site: {
     url: 'https://nokil1141.com',
   },
+
   modules: [
     [
       '@nuxtjs/sitemap',
@@ -79,7 +82,10 @@ export default defineNuxtConfig({
       },
     ],
   ],
+
   nitro: {
     preset: 'static',
   },
+
+  compatibilityDate: '2026-05-28',
 });

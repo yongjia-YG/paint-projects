@@ -1,0 +1,123 @@
+/* ============================================================
+   永嘉塗裝設計 — 設計系統（簡約質感 / Minimal）
+   ============================================================ */
+:root {
+  /* 配色：低彩度、暖中性 */
+  --color-bg: #f5f3f0; /* 全站暖白底 */
+  --color-surface: #ffffff; /* 卡片 / 區塊 */
+  --color-surface-2: #faf9f7; /* 次要區塊 */
+  --color-text: #1c1b19; /* 主文字（近黑） */
+  --color-text-soft: #57534e; /* 次要文字 */
+  --color-text-muted: #8d8780; /* 提示文字 */
+  --color-border: #e7e2db; /* 細線 / 邊框 */
+  --color-accent: #2a2723; /* 主強調（深炭） */
+  --color-accent-soft: #a98e68; /* 暖金（少量點綴） */
+
+  /* 字級 */
+  --fs-hero: clamp(2.4rem, 6vw, 4rem);
+  --fs-h1: clamp(1.7rem, 4vw, 2.4rem);
+  --fs-h2: clamp(1.3rem, 3vw, 1.7rem);
+  --fs-body: 1rem;
+  --fs-sm: 0.875rem;
+  --fs-xs: 0.78rem;
+
+  /* 間距節奏 */
+  --space-section: clamp(48px, 9vw, 96px);
+
+  /* 圓角 */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 22px;
+  --radius-pill: 999px;
+
+  /* 陰影 */
+  --shadow-sm: 0 1px 2px rgba(28, 27, 25, 0.05), 0 1px 3px rgba(28, 27, 25, 0.06);
+  --shadow-md: 0 8px 28px rgba(28, 27, 25, 0.08);
+  --shadow-lg: 0 20px 50px rgba(28, 27, 25, 0.14);
+
+  /* 結構 */
+  --max-w: 1120px;
+  --header-h: 68px;
+
+  /* 動效 */
+  --ease: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 錨點捲動時，避開固定頁首 */
+:target,
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 12px);
+}
+
+body {
+  font-family: 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* 防止手機橫向 overflow */
+body,
+#__nuxt {
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* 共用：置中容器 */
+.container {
+  width: 100%;
+  max-width: var(--max-w);
+  margin: 0 auto;
+  padding-inline: clamp(16px, 4vw, 32px);
+}
+
+/* 共用：區塊標題 */
+.section-eyebrow {
+  display: block;
+  font-size: var(--fs-xs);
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: var(--color-accent-soft);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: var(--fs-h1);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-align: center;
+  color: var(--color-text);
+}
+
+.section-rule {
+  width: 44px;
+  height: 2px;
+  background: var(--color-accent-soft);
+  border-radius: var(--radius-pill);
+  margin: 18px auto 0;
+}
