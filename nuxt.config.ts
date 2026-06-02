@@ -70,6 +70,8 @@ export default defineNuxtConfig({
   },
 
   modules: [
+    // 登入/Session 工具：加密 Cookie session、密碼雜湊（需 NUXT_SESSION_PASSWORD 環境變數）
+    'nuxt-auth-utils',
     [
       '@nuxtjs/sitemap',
 
