@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { Product } from '~/data/products';
+import type { ProductDetail } from '~/types/product';
 
-const props = defineProps<{ product: Product }>();
+const props = defineProps<{ product: ProductDetail }>();
 
 const images = computed(() => props.product.images);
 

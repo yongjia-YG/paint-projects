@@ -83,8 +83,10 @@ export default defineNuxtConfig({
     ],
   ],
 
+  // SSR（Node 伺服器）：後台改了內容公開頁即時反映，並可由 server/api 讀資料庫。
+  // 部署到 Render 以 `node .output/server/index.mjs` 啟動。
   nitro: {
-    preset: 'static',
+    preset: 'node-server',
   },
 
   compatibilityDate: '2026-05-28',

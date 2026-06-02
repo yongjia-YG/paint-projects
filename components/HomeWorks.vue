@@ -1,5 +1,8 @@
 <script setup lang="ts">
-import { products } from '~/data/products';
+// 從資料庫讀取分類列表（SSR 時於伺服器端取得）
+const { data: products } = await useFetch('/api/products', {
+  default: () => [],
+});
 </script>
 
 <template>

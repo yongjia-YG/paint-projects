@@ -1,0 +1,55 @@
+// Prisma schema — 永嘉塗裝設計後台
+// 文件：https://www.prisma.io/docs
+// 改動 schema 後執行：npx prisma migrate dev --name <說明>
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+/// 後台帳號（你與同事）
+model User {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    DateTime @default(now())
+}
+
+/// 作品分類
+model Product {
+  id             Int      @id @default(autoincrement())
+  slug           String   @unique
+  name           String
+  intro          String?  @db.Text
+  cover          String
+  coverType      String   @default("image") // 'image' | 'video'
+  sortOrder      Int      @default(0)
+  seoTitle       String?
+  seoDescription String?  @db.Text
+  seoKeywords    String?
+  ogImage        String?
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  images ProductImage[]
+
+  @@index([sortOrder])
+}
+
+/// 相簿圖片（屬於某個分類）
+model ProductImage {
+  id        Int      @id @default(autoincrement())
+  productId Int
+  url       String
+  sortOrder Int      @default(0)
+  createdAt DateTime @default(now())
+
+  product Product @relation(fields: [productId], references: [id], onDelete: Cascade)
+
+  @@index([productId, sortOrder])
+}

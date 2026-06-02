@@ -266,8 +266,9 @@ product_images（相簿圖片）
 
 ---
 
-## 10. 下一步
+## 10. 進度與下一步
 
-- 我準備從 **Phase 1** 開始（只在本機跑，不需你的帳號）。
-- 你可先去註冊 **TiDB Serverless** 拿 `DATABASE_URL`，給我後就能真的連線 + 匯入現有資料。
-- 有任何名詞看不懂，直接拿這份筆記的關鍵字問我。
+- ✅ **Phase 1 已完成**（程式碼 + build 通過）。逐檔詳解見 **`docs/phase1-implementation.md`**。
+- ⏳ 待辦：註冊 **TiDB Serverless** 拿 `DATABASE_URL` → 填進 `.env` → 跑 `npx prisma migrate dev` + `npx prisma db seed` → `npm run dev` 確認。
+- 🔜 之後：Phase 2 登入 → Phase 3 後台 CRUD → Phase 4 圖片上傳 → Phase 5 部署。
+- 有任何名詞看不懂，直接拿這兩份文件的關鍵字問我。
