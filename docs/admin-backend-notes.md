@@ -270,6 +270,7 @@ product_images（相簿圖片）
 
 - ✅ **Phase 1 已完成**（資料庫讀取）。逐檔詳解見 **`docs/phase1-implementation.md`**。
 - ✅ **Phase 2 已完成**（登入 + 保護 `/admin`）。逐檔詳解見 **`docs/phase2-implementation.md`**。
+- ✅ **Phase 3 已完成**（後台分類 CRUD：列表/新增/編輯/排序/刪除，寫入 API 以 `requireUserSession` 保護）。逐檔詳解見 **`docs/phase3-implementation.md`**。
 - ⏳ 待辦（需要你）：照 **`docs/tidb-setup-guide.md`** 手把手步驟，註冊 TiDB → 填 `DATABASE_URL` → `migrate` + `seed` → `npm run dev` → 開 `/login` 建立第一個管理員。
 - 🔜 之後：Phase 3 後台 CRUD → Phase 4 圖片上傳 → Phase 5 部署。
 - 有任何名詞看不懂，直接拿這些文件的關鍵字問我。

@@ -13,14 +13,14 @@ useHead({ title: '內容管理 | 永嘉塗裝設計' });
     <p class="page-sub">歡迎，{{ user?.name }}。</p>
 
     <div class="cards">
-      <NuxtLink to="/admin/products" class="card card-disabled" @click.prevent>
-        <span class="card-h">作品分類管理</span>
-        <span class="card-d">新增 / 編輯分類、簡介、圖片（Phase 3 開放）</span>
+      <NuxtLink to="/admin/products" class="card">
+        <span class="card-h">作品分類管理 →</span>
+        <span class="card-d">新增 / 編輯分類、簡介、排序、刪除</span>
       </NuxtLink>
     </div>
 
     <p class="note">
-      登入機制已完成（Phase 2）。下一步 Phase 3 會在這裡接上分類的新增、編輯與排序。
+      分類的新增、編輯、排序、刪除已可使用（Phase 3）。圖片上傳將於 Phase 4 開放。
     </p>
   </div>
 </template>
@@ -57,9 +57,12 @@ useHead({ title: '內容管理 | 永嘉塗裝設計' });
   box-shadow: var(--shadow-sm);
 }
 
-.card-disabled {
-  opacity: 0.6;
-  cursor: not-allowed;
+.card {
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
+}
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .card-h {
