@@ -11,7 +11,7 @@ services:
     runtime: node
     plan: free # 免費方案（閒置會休眠，首次請求冷啟動約 30–60 秒）
     region: singapore # 離台灣近，連線較快
-    branch: master # 追蹤哪個分支：push 到此分支就自動部署
+    branch: feature/optimization # 追蹤哪個分支：push 到此分支就自動部署
 
     # 安裝 → 套用資料庫 migration（正式環境用 deploy，不會問問題）→ 打包
     buildCommand: npm install && npx prisma migrate deploy && npm run build

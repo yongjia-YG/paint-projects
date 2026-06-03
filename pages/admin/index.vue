@@ -9,19 +9,15 @@ useHead({ title: '內容管理 | 永嘉塗裝設計' });
 
 <template>
   <div>
-    <h1 class="page-title">儀表板</h1>
+    <h1 class="page-title">內容管理</h1>
     <p class="page-sub">歡迎，{{ user?.name }}。</p>
 
     <div class="cards">
       <NuxtLink to="/admin/products" class="card">
         <span class="card-h">作品分類管理 →</span>
-        <span class="card-d">新增 / 編輯分類、簡介、排序、刪除</span>
+        <span class="card-d">新增 / 編輯、封面與相簿圖片、排序、上下架、刪除</span>
       </NuxtLink>
     </div>
-
-    <p class="note">
-      分類的新增、編輯、排序、刪除已可使用（Phase 3）。圖片上傳將於 Phase 4 開放。
-    </p>
   </div>
 </template>
 
@@ -74,13 +70,6 @@ useHead({ title: '內容管理 | 永嘉塗裝設計' });
 .card-d {
   font-size: var(--fs-sm);
   color: var(--color-text-muted);
-}
-
-.note {
-  margin-top: 28px;
-  font-size: var(--fs-sm);
-  color: var(--color-text-muted);
-  line-height: 1.8;
 }
 
 @media (min-width: 640px) {

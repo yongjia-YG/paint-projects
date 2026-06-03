@@ -151,6 +151,9 @@ onUnmounted(() => window.removeEventListener('keydown', onKey));
   color: var(--color-text-soft);
   line-height: 2;
   text-indent: 2em;
+  /* 讓超長且無空白的字串（如連續英文/數字）也能斷行，避免撐破版面 */
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .grid {

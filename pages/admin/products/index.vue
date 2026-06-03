@@ -31,6 +31,23 @@ const move = async (index: number, dir: -1 | 1) => {
   }
 };
 
+// 上架/下架切換：送出想要的狀態（與目前相反）
+const togglePublish = async (p: { id: number; published: boolean }) => {
+  busy.value = true;
+  error.value = '';
+  try {
+    await $fetch(`/api/admin/products/${p.id}/publish`, {
+      method: 'POST',
+      body: { published: !p.published },
+    });
+    await refresh();
+  } catch (e: any) {
+    error.value = e?.statusMessage || '切換上下架失敗';
+  } finally {
+    busy.value = false;
+  }
+};
+
 const remove = async (id: number, name: string) => {
   if (!confirm(`確定刪除「${name}」？此分類的相簿圖片也會一併刪除，無法復原。`)) return;
   busy.value = true;
@@ -71,11 +88,12 @@ const remove = async (id: number, name: string) => {
           <th>名稱</th>
           <th class="col-slug">slug</th>
           <th class="col-imgs">圖片</th>
+          <th class="col-status">狀態</th>
           <th class="col-actions">操作</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(p, i) in products" :key="p.id">
+        <tr v-for="(p, i) in products" :key="p.id" :class="{ 'is-off': !p.published }">
           <td class="col-sort">
             <div class="sort-btns">
               <button :disabled="i === 0 || busy" title="上移" @click="move(i, -1)">▲</button>
@@ -89,7 +107,17 @@ const remove = async (id: number, name: string) => {
           <td class="cell-name">{{ p.name }}</td>
           <td class="col-slug"><code>{{ p.slug }}</code></td>
           <td class="col-imgs">{{ p._count.images }}</td>
+          <td class="col-status">
+            <span class="badge" :class="p.published ? 'on' : 'off'">
+              {{ p.published ? '上架中' : '已下架' }}
+            </span>
+          </td>
           <td class="col-actions">
+            <button
+              class="link-toggle"
+              :disabled="busy"
+              @click="togglePublish(p)"
+            >{{ p.published ? '下架' : '上架' }}</button>
             <NuxtLink :to="`/admin/products/${p.id}`" class="link-edit">編輯</NuxtLink>
             <button class="link-del" :disabled="busy" @click="remove(p.id, p.name)">刪除</button>
           </td>
@@ -232,8 +260,48 @@ const remove = async (id: number, name: string) => {
   cursor: not-allowed;
 }
 
+.col-status {
+  white-space: nowrap;
+}
+
+/* 下架的列整列淡化，一眼看出沒上架 */
+.table tbody tr.is-off {
+  opacity: 0.55;
+}
+
+.badge {
+  display: inline-block;
+  font-size: var(--fs-xs);
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.badge.on {
+  color: #2f7d52;
+  background: #e6f4ec;
+}
+.badge.off {
+  color: #8a6d3b;
+  background: #f4ecdd;
+}
+
 .col-actions {
   white-space: nowrap;
+}
+
+.link-toggle {
+  border: none;
+  background: none;
+  color: var(--color-accent);
+  cursor: pointer;
+  font-size: var(--fs-sm);
+  padding: 0;
+  margin-right: 14px;
+}
+.link-toggle:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
 }
 
 .link-edit {

@@ -85,15 +85,15 @@ const onSubmit = () => emit('submit', { ...form });
 
     <div class="grid">
       <label class="field">
-        <span class="lbl">封面網址</span>
-        <input v-model="form.cover" type="text" placeholder="/imgs/... 或 https://..." />
+        <span class="lbl">封面圖片</span>
         <span class="upload-row">
           <input ref="coverInput" type="file" accept="image/*" hidden @change="onCoverPick" />
           <button type="button" class="btn-upload" :disabled="uploadingCover" @click="coverInput?.click()">
-            {{ uploadingCover ? '上傳中…' : '⬆ 上傳圖片' }}
+            {{ uploadingCover ? '上傳中…' : '⬆ 從電腦上傳圖片' }}
           </button>
-          <span class="hint">影片封面請手填網址</span>
         </span>
+        <input v-model="form.cover" type="text" class="url-input" placeholder="上傳後自動帶入；影片封面才需手動貼網址" />
+        <span class="hint">封面是首頁卡片顯示的圖。按上方按鈕選圖即可，網址會自動填入。</span>
         <span v-if="uploadError" class="upload-err">{{ uploadError }}</span>
       </label>
 
@@ -113,23 +113,27 @@ const onSubmit = () => emit('submit', { ...form });
     </div>
 
     <fieldset class="seo">
-      <legend>SEO（選填）</legend>
+      <legend>搜尋引擎 / 社群分享設定（進階・選填）</legend>
+      <p class="seo-note">這一整區都可以留空，系統會自動帶入合理的預設值。不確定就不用填。</p>
       <label class="field">
         <span class="lbl">SEO 標題</span>
-        <input v-model="form.seoTitle" type="text" placeholder="例：微水泥 - 現代建築裝飾材料 | 永嘉塗裝設計" />
+        <input v-model="form.seoTitle" type="text" placeholder="留空自動用：分類名稱 | 永嘉塗裝設計" />
+        <span class="hint">Google 搜尋結果顯示的標題。</span>
       </label>
       <label class="field">
         <span class="lbl">SEO 描述</span>
-        <textarea v-model="form.seoDescription" rows="2"></textarea>
+        <textarea v-model="form.seoDescription" rows="2" placeholder="留空可用簡介代替"></textarea>
+        <span class="hint">Google 搜尋結果標題下方的說明文字。</span>
       </label>
       <div class="grid">
         <label class="field">
           <span class="lbl">SEO 關鍵字</span>
-          <input v-model="form.seoKeywords" type="text" placeholder="逗號分隔" />
+          <input v-model="form.seoKeywords" type="text" placeholder="例：微水泥, 室內設計（逗號分隔）" />
         </label>
         <label class="field">
-          <span class="lbl">OG 圖片網址</span>
-          <input v-model="form.ogImage" type="text" placeholder="留空則用封面" />
+          <span class="lbl">社群分享預覽圖</span>
+          <input v-model="form.ogImage" type="text" placeholder="留空即可，會自動用封面" />
+          <span class="hint">分享到 LINE / Facebook 時的縮圖，一般免填。</span>
         </label>
       </div>
     </fieldset>
@@ -263,6 +267,17 @@ textarea {
   padding: 0 8px;
   font-size: var(--fs-xs);
   letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+.seo-note {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  margin: 0 0 16px;
+}
+
+/* 次要的網址輸入框：上傳後自動帶入，視覺上弱化 */
+.url-input {
+  font-size: var(--fs-xs);
   color: var(--color-text-muted);
 }
 

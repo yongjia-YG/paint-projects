@@ -6,8 +6,9 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 400, statusMessage: '缺少 slug' });
   }
 
-  const product = await prisma.product.findUnique({
-    where: { slug },
+  // 只回傳上架的分類；下架的視同不存在（404）
+  const product = await prisma.product.findFirst({
+    where: { slug, published: true },
     include: {
       images: { orderBy: { sortOrder: 'asc' }, select: { url: true } },
     },
