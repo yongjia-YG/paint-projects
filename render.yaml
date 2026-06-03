@@ -1,0 +1,36 @@
+# Render Blueprint — 永嘉塗裝設計後台部署設定
+# 用途：在 Render 上以「Blueprint」一鍵建立 Web Service，省去手動填表。
+# 文件：https://render.com/docs/blueprint-spec
+#
+# 機密（DATABASE_URL / NUXT_SESSION_PASSWORD / CLOUDINARY_*）標 sync: false，
+# 代表「不寫在這個檔、要到 Render 後台手動填」——金鑰不進 git。
+
+services:
+  - type: web
+    name: yongjia
+    runtime: node
+    plan: free # 免費方案（閒置會休眠，首次請求冷啟動約 30–60 秒）
+    region: singapore # 離台灣近，連線較快
+    branch: master # 追蹤哪個分支：push 到此分支就自動部署
+
+    # 安裝 → 套用資料庫 migration（正式環境用 deploy，不會問問題）→ 打包
+    buildCommand: npm install && npx prisma migrate deploy && npm run build
+    # 啟動正式伺服器（Nitro node-server 的進入點）
+    startCommand: npm run start
+
+    healthCheckPath: / # Render 定期戳這個路徑確認服務活著
+
+    envVars:
+      - key: NODE_VERSION
+        value: 20.19.0 # 指定 Node 版本（滿足相依套件的 engine 需求）
+      # 以下為機密，請在 Render 後台「Environment」手動填入實際值：
+      - key: DATABASE_URL
+        sync: false
+      - key: NUXT_SESSION_PASSWORD
+        sync: false
+      - key: CLOUDINARY_CLOUD_NAME
+        sync: false
+      - key: CLOUDINARY_API_KEY
+        sync: false
+      - key: CLOUDINARY_API_SECRET
+        sync: false

@@ -276,10 +276,10 @@ product_images（相簿圖片）
 | **Phase 2** | 登入 + 保護 `/admin`（nuxt-auth-utils、bcrypt、middleware） | ✅ 完成 | `docs/phase2-implementation.md` |
 | **Phase 3** | 後台分類 CRUD（列表/新增/編輯/排序/刪除，寫入 API 以 `requireUserSession` 保護） | ✅ 完成 | `docs/phase3-implementation.md` |
 | **Phase 4** | 圖片上傳 Cloudinary（封面一鍵上傳、相簿多檔上傳/刪除/排序） | ✅ 完成 | `docs/phase4-implementation.md` |
-| **Phase 5** | 部署上線（Render、環境變數、網域） | ⏳ 尚未動工 | （待寫） |
+| **Phase 5** | 部署上線（Render Blueprint、環境變數、自動 migration、網域） | ✅ 設定完成 | `docs/phase5-implementation.md` + `docs/render-deploy-guide.md` |
 
-> ⚠️ 重要：上面「程式碼完成」**不等於「已實測跑通」**。Phase 1–4 的程式都寫好了，但因為**資料庫與 Cloudinary 還沒接上**，目前都還沒真正在本機跑起來驗證。
-> 下面 10.2 就是「讓它真正動起來」要做的事——**需要你親自操作**（申請服務、填金鑰）。
+> ⚠️ 重要：上面「程式碼/設定完成」**不等於「已實測跑通」**。Phase 1–5 的程式與部署設定都備好了，但因為**資料庫、Cloudinary、Render 都還沒由你接上**，尚未真正在線上跑起來。
+> 下面 10.2 就是「讓它真正動起來」要做的事——**需要你親自操作**（申請服務、填金鑰、部署）。
 
 ### 10.2 待辦清單（需要你操作，照順序做）
 
@@ -314,11 +314,12 @@ product_images（相簿圖片）
    - 完整測試腳本見 `docs/phase4-implementation.md` 第 4 節。
 
 #### C. Phase 5：部署上線（A、B 都驗證 OK 後再做）
-10. 把 repo 連到 **Render**，建一個 Web Service（Node，啟動指令 `node .output/server/index.mjs`）。
-11. 在 Render「Environment」把 `.env` 那五個變數**原樣設一遍**（DATABASE_URL、NUXT_SESSION_PASSWORD、CLOUDINARY_*）。
-12. 設好 build 指令（`npm run build`），push 即自動部署。
-13. 把你的網域 DNS 指向 Render（CNAME/A 記錄），HTTPS 由 Render 免費自動處理。
-    - 細節與關鍵字見 §3.9。
+> 部署設定（`render.yaml`、`package.json` 的 build/start）已幫你寫好。完整手把手見 **`docs/render-deploy-guide.md`**。
+10. **先確認** 本機 `migrate dev` 產生的 `prisma/migrations/` 已 commit，整個專案已 push 到 GitHub
+    （Render 上線時跑 `prisma migrate deploy`，只套用 repo 裡已有的 migration）。
+11. Render → New + → **Blueprint** → 選 repo（自動讀 `render.yaml`，已設好免費方案/Singapore/build/start）。
+12. 在 Render「Environment」把那五個金鑰**原樣填一遍**（DATABASE_URL、NUXT_SESSION_PASSWORD、CLOUDINARY_*）。
+13. 等部署 **Live** → 開 `.onrender.com` 測試（首頁/登入/上傳）→ **Settings → Custom Domains** 接網域，DNS 照給的值設定，HTTPS 由 Render 免費自動處理。
 
 ### 10.3 小提醒
 - `.env` **絕不能進 git**（裡面是金鑰）；確認它在 `.gitignore`。線上金鑰只放 Render 後台。
