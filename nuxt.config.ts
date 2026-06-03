@@ -85,6 +85,14 @@ export default defineNuxtConfig({
     ],
   ],
 
+  // 伺服器端機密（僅後端可讀，不會送到瀏覽器）。
+  // 對應 .env 的同名變數；線上於 Render 後台「Environment」設定。
+  runtimeConfig: {
+    cloudinaryCloudName: process.env.CLOUDINARY_CLOUD_NAME,
+    cloudinaryApiKey: process.env.CLOUDINARY_API_KEY,
+    cloudinaryApiSecret: process.env.CLOUDINARY_API_SECRET,
+  },
+
   // SSR（Node 伺服器）：後台改了內容公開頁即時反映，並可由 server/api 讀資料庫。
   // 部署到 Render 以 `node .output/server/index.mjs` 啟動。
   nitro: {

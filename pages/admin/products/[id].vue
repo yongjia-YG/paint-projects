@@ -6,8 +6,25 @@ definePageMeta({ layout: 'admin', middleware: 'auth' });
 const route = useRoute();
 const id = route.params.id as string;
 
+// 後台單一分類的回傳形狀（對應 server/api/admin/products/[id].get.ts）。
+// 動態網址 useFetch 無法自動推斷型別，故明確指定。
+interface AdminProductDetail {
+  id: number;
+  name: string;
+  slug: string;
+  intro: string | null;
+  cover: string;
+  coverType: string;
+  seoTitle: string | null;
+  seoDescription: string | null;
+  seoKeywords: string | null;
+  ogImage: string | null;
+  _count: { images: number };
+  images: { id: number; url: string; sortOrder: number }[];
+}
+
 // 載入要編輯的分類
-const { data: product, error: loadError } = await useFetch(`/api/admin/products/${id}`);
+const { data: product, error: loadError } = await useFetch<AdminProductDetail>(`/api/admin/products/${id}`);
 if (loadError.value || !product.value) {
   throw createError({ statusCode: 404, statusMessage: '找不到此分類', fatal: true });
 }
@@ -56,6 +73,12 @@ const onSubmit = async (data: ProductFormData) => {
       :image-count="product?._count.images"
       submit-label="儲存變更"
       @submit="onSubmit"
+    />
+
+    <AdminImageManager
+      v-if="product"
+      :product-id="product.id"
+      :initial="product.images"
     />
   </div>
 </template>

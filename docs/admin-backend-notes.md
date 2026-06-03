@@ -268,9 +268,59 @@ product_images（相簿圖片）
 
 ## 10. 進度與下一步
 
-- ✅ **Phase 1 已完成**（資料庫讀取）。逐檔詳解見 **`docs/phase1-implementation.md`**。
-- ✅ **Phase 2 已完成**（登入 + 保護 `/admin`）。逐檔詳解見 **`docs/phase2-implementation.md`**。
-- ✅ **Phase 3 已完成**（後台分類 CRUD：列表/新增/編輯/排序/刪除，寫入 API 以 `requireUserSession` 保護）。逐檔詳解見 **`docs/phase3-implementation.md`**。
-- ⏳ 待辦（需要你）：照 **`docs/tidb-setup-guide.md`** 手把手步驟，註冊 TiDB → 填 `DATABASE_URL` → `migrate` + `seed` → `npm run dev` → 開 `/login` 建立第一個管理員。
-- 🔜 之後：Phase 3 後台 CRUD → Phase 4 圖片上傳 → Phase 5 部署。
-- 有任何名詞看不懂，直接拿這些文件的關鍵字問我。
+### 10.1 各階段「程式碼」進度
+
+| 階段 | 內容 | 程式碼 | 逐檔詳解 |
+|------|------|--------|----------|
+| **Phase 1** | 資料庫讀取（Prisma schema、改 SSR、seed 匯入 12 分類、公開頁改讀 DB） | ✅ 完成 | `docs/phase1-implementation.md` |
+| **Phase 2** | 登入 + 保護 `/admin`（nuxt-auth-utils、bcrypt、middleware） | ✅ 完成 | `docs/phase2-implementation.md` |
+| **Phase 3** | 後台分類 CRUD（列表/新增/編輯/排序/刪除，寫入 API 以 `requireUserSession` 保護） | ✅ 完成 | `docs/phase3-implementation.md` |
+| **Phase 4** | 圖片上傳 Cloudinary（封面一鍵上傳、相簿多檔上傳/刪除/排序） | ✅ 完成 | `docs/phase4-implementation.md` |
+| **Phase 5** | 部署上線（Render、環境變數、網域） | ⏳ 尚未動工 | （待寫） |
+
+> ⚠️ 重要：上面「程式碼完成」**不等於「已實測跑通」**。Phase 1–4 的程式都寫好了，但因為**資料庫與 Cloudinary 還沒接上**，目前都還沒真正在本機跑起來驗證。
+> 下面 10.2 就是「讓它真正動起來」要做的事——**需要你親自操作**（申請服務、填金鑰）。
+
+### 10.2 待辦清單（需要你操作，照順序做）
+
+#### A. 接資料庫 → 解鎖 Phase 1–3（看得到分類、能登入、能 CRUD）
+1. 照 **`docs/tidb-setup-guide.md`** 註冊 TiDB Cloud Serverless（免費），拿到 `DATABASE_URL`。
+2. 在專案根目錄建 `.env`，填入：
+   ```bash
+   DATABASE_URL="mysql://..."                       # TiDB 給的連線字串
+   NUXT_SESSION_PASSWORD="至少32字元隨機字串"          # 見 §4，登入 cookie 加密用
+   ```
+3. 建表 + 灌入現有 12 分類：
+   ```bash
+   npx prisma migrate dev --name init   # 第一次建表
+   npx prisma db seed                   # 匯入 data/products.ts 的 12 分類
+   ```
+4. `npm run dev` → 開首頁/分類頁確認讀得到 DB 的資料（Phase 1）。
+5. 開 `/login` 建立第一個管理員帳號（Phase 2）→ 進 `/admin` 試新增/編輯/排序/刪除（Phase 3）。
+
+#### B. 接 Cloudinary → 解鎖 Phase 4（圖片上傳）
+6. 到 https://cloudinary.com 註冊（免費），在 Dashboard 拿到 **cloud name / api key / api secret**。
+7. 在 `.env` 補上（見 §4）：
+   ```bash
+   CLOUDINARY_CLOUD_NAME="xxx"
+   CLOUDINARY_API_KEY="xxx"
+   CLOUDINARY_API_SECRET="xxx"
+   ```
+8. 套用 Phase 4 的 schema 變更（`ProductImage` 多了 `publicId` 欄）：
+   ```bash
+   npx prisma migrate dev --name add_image_publicid
+   ```
+9. `npm run dev` → 進某分類「編輯」→ 試封面上傳、相簿多檔上傳/刪除/排序。
+   - 完整測試腳本見 `docs/phase4-implementation.md` 第 4 節。
+
+#### C. Phase 5：部署上線（A、B 都驗證 OK 後再做）
+10. 把 repo 連到 **Render**，建一個 Web Service（Node，啟動指令 `node .output/server/index.mjs`）。
+11. 在 Render「Environment」把 `.env` 那五個變數**原樣設一遍**（DATABASE_URL、NUXT_SESSION_PASSWORD、CLOUDINARY_*）。
+12. 設好 build 指令（`npm run build`），push 即自動部署。
+13. 把你的網域 DNS 指向 Render（CNAME/A 記錄），HTTPS 由 Render 免費自動處理。
+    - 細節與關鍵字見 §3.9。
+
+### 10.3 小提醒
+- `.env` **絕不能進 git**（裡面是金鑰）；確認它在 `.gitignore`。線上金鑰只放 Render 後台。
+- 改了 `prisma/schema.prisma` 一定要跑 `npx prisma migrate dev`，否則資料庫結構跟程式對不上。
+- 有任何名詞看不懂，直接拿這些文件的 🔍 關鍵字問我。

@@ -9,7 +9,10 @@ export default defineEventHandler(async (event) => {
 
   const product = await prisma.product.findUnique({
     where: { id },
-    include: { _count: { select: { images: true } } },
+    include: {
+      images: { orderBy: { sortOrder: 'asc' } }, // 相簿圖片（編輯頁的相簿管理用）
+      _count: { select: { images: true } },
+    },
   });
 
   if (!product) {

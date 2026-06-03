@@ -34,6 +34,32 @@ const form = reactive<ProductFormData>({
   ogImage: props.initial?.ogImage ?? '',
 });
 
+// 封面上傳：選檔 → 傳到 /api/admin/upload（Cloudinary）→ 回填網址。
+// 影片封面仍以網址手填（上傳只處理圖片）。
+const coverInput = ref<HTMLInputElement>();
+const uploadingCover = ref(false);
+const uploadError = ref('');
+
+const onCoverPick = async (e: Event) => {
+  const input = e.target as HTMLInputElement;
+  const file = input.files?.[0];
+  if (!file) return;
+  uploadingCover.value = true;
+  uploadError.value = '';
+  try {
+    const fd = new FormData();
+    fd.append('file', file);
+    const res = await $fetch<{ url: string }>('/api/admin/upload', { method: 'POST', body: fd });
+    form.cover = res.url;
+    form.coverType = 'image';
+  } catch (err: any) {
+    uploadError.value = err?.statusMessage || err?.data?.statusMessage || '封面上傳失敗';
+  } finally {
+    uploadingCover.value = false;
+    input.value = ''; // 清空，讓同一檔可再次觸發 change
+  }
+};
+
 const onSubmit = () => emit('submit', { ...form });
 </script>
 
@@ -61,6 +87,14 @@ const onSubmit = () => emit('submit', { ...form });
       <label class="field">
         <span class="lbl">封面網址</span>
         <input v-model="form.cover" type="text" placeholder="/imgs/... 或 https://..." />
+        <span class="upload-row">
+          <input ref="coverInput" type="file" accept="image/*" hidden @change="onCoverPick" />
+          <button type="button" class="btn-upload" :disabled="uploadingCover" @click="coverInput?.click()">
+            {{ uploadingCover ? '上傳中…' : '⬆ 上傳圖片' }}
+          </button>
+          <span class="hint">影片封面請手填網址</span>
+        </span>
+        <span v-if="uploadError" class="upload-err">{{ uploadError }}</span>
       </label>
 
       <label class="field">
@@ -101,7 +135,7 @@ const onSubmit = () => emit('submit', { ...form });
     </fieldset>
 
     <p v-if="isEdit" class="imgs-note">
-      相簿圖片：目前 {{ imageCount ?? 0 }} 張。圖片上傳與管理將於 <strong>Phase 4</strong> 開放。
+      相簿圖片：目前 {{ imageCount ?? 0 }} 張。可在下方「相簿圖片」區上傳、刪除與調整順序。
     </p>
 
     <p v-if="error" class="form-error">{{ error }}</p>
@@ -150,6 +184,36 @@ const onSubmit = () => emit('submit', { ...form });
 .hint {
   font-size: var(--fs-xs);
   color: var(--color-text-muted);
+}
+
+.upload-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-top: 2px;
+}
+.btn-upload {
+  flex-shrink: 0;
+  padding: 7px 14px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background: var(--color-surface-2);
+  color: var(--color-text-soft);
+  font-size: var(--fs-xs);
+  cursor: pointer;
+  transition: border-color 0.2s var(--ease);
+}
+.btn-upload:hover:not(:disabled) {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+.btn-upload:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.upload-err {
+  font-size: var(--fs-xs);
+  color: #b4493b;
 }
 
 input,
