@@ -216,6 +216,13 @@ export const products: Product[] = [
       '/imgs/general/S__27238452_0.jpg',
       '/imgs/general/S__27238453_0.jpg',
       '/imgs/general/S__27238454_0.jpg',
+      '/imgs/general/S__42098764_0.jpg',
+      '/imgs/general/S__42098765_0.jpg',
+      '/imgs/general/S__42098766_0.jpg',
+      '/imgs/general/S__42098767_0.jpg',
+      '/imgs/general/S__42098768_0.jpg',
+      '/imgs/general/S__42098769_0.jpg',
+      '/imgs/general/S__42098770_0.jpg',
     ],
     seo: {
       title: '一般案場 - 施工實例 | 永嘉塗裝設計',
